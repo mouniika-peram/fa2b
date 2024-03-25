@@ -15,6 +15,13 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import dj_database_url
+
+import environ
+
+env=environ.Env()
+
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -25,7 +32,7 @@ SECRET_KEY = 'django-insecure-md#poc%wkio8ft0g&7*g)07mpgn@whfi)e@%lscjq0=@!o!l%6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +59,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'fa2b_back.urls'
+
+AUTH_USER_MODEL = "user.CustomUser"
+
 
 TEMPLATES = [
     {
@@ -67,22 +79,34 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'fa2b_back.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+# Render Postgres dataBase (Live)
+
+
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'f2b',
-        'USER':'postgres',
-        'PASSWORD':'hyper',
-        'HOST':'localhost',
-        'PORT':'',
-    }
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'f2b',
+#         'USER':'postgres',
+#         'PASSWORD':'hyper',
+#         'HOST':'localhost',
+#         'PORT':'',
+#     }
+# }
 
 
 # Password validation

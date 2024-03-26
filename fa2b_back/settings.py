@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'rest_framework',
+    'corsheaders',
     'user.apps.UserConfig',
 ]
 
@@ -62,6 +63,14 @@ ROOT_URLCONF = 'fa2b_back.urls'
 
 AUTH_USER_MODEL = "user.CustomUser"
 
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+    # "https://playcode.io/",
+
+]
 
 TEMPLATES = [
     {

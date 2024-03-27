@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'user.apps.UserConfig',
+    'cart.apps.CartConfig',
     'product.apps.ProductConfig',
 ]
 
@@ -107,21 +108,21 @@ WSGI_APPLICATION = 'fa2b_back.wsgi.application'
 
 
 
-DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'))
-}
-
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'f2b',
-#         'USER':'postgres',
-#         'PASSWORD':'hyper',
-#         'HOST':'localhost',
-#         'PORT':'',
-#     }
+#     'default': dj_database_url.parse(env('DATABASE_URL'))
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'fa2b',
+        'USER':'postgres',
+        'PASSWORD':'hyper',
+        'HOST':'localhost',
+        'PORT':'',
+    }
+}
 
 
 # Password validation

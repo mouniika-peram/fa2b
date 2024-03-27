@@ -69,7 +69,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://sub.example.com",
     "http://localhost:3000",
     "http://127.0.0.1:8000",
-    "https://preview-1812711.playcode.io"
+    "https://preview-1812711.playcode.io",
+    "https://fa2b-front-react.onrender.com"
     # "https://playcode.io/",
 
 ]

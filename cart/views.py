@@ -28,7 +28,9 @@ class CartViewset(viewsets.ModelViewSet):
             if cart_item_exist:
                 udt_qty_dict={"cart":cart_item_exist,"prd_price":prd_exist.price,"type":"increment"}
                 UpdateCartQty(udt_qty_dict)
-                return GetAllCartItemsByUserId(request,cart_user_detail_dic) 
+                serializer=CartSerializer(cart_item_exist,context={"request":request})
+                return Response(serializer.data,status=status.HTTP_201_CREATED)        
+                # return GetAllCartItemsByUserId(request,cart_user_detail_dic) 
             else:
                 dict_data={
                     "user_id":1,
@@ -42,7 +44,8 @@ class CartViewset(viewsets.ModelViewSet):
                 serializer = CartSerializer(data=dict_data)
                 if serializer.is_valid():
                     serializer.save()
-                    return GetAllCartItemsByUserId(request,cart_user_detail_dic)        
+                    # return GetAllCartItemsByUserId(request,cart_user_detail_dic)
+                    return Response(serializer.data,status=status.HTTP_201_CREATED)        
         else:
             return Response({"message":"Product does not found"},status=status.HTTP_404_NOT_FOUND)
 

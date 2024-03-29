@@ -41,7 +41,7 @@ class CartViewset(viewsets.ModelViewSet):
                     "qty":1,
                     "net_amt":request.data['qty']*prd_exist.price
                 }
-                serializer = CartSerializer(data=dict_data)
+                serializer = CartSerializer(data=dict_data,context={"request":request})
                 if serializer.is_valid():
                     serializer.save()
                     # return GetAllCartItemsByUserId(request,cart_user_detail_dic)

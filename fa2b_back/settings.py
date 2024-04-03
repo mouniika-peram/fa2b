@@ -47,9 +47,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'user.apps.UserConfig',
     'cart.apps.CartConfig',
+    'category.apps.CategoryConfig',
+    'categoryQnA.apps.CategoryqnaConfig',
+    'categoryQnAExamples.apps.CategoryqnaexamplesConfig',
     'product.apps.ProductConfig',
 ]
 
@@ -82,7 +86,8 @@ CORS_ALLOWED_ORIGINS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,6 +103,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fa2b_back.wsgi.application'
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

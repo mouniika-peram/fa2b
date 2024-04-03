@@ -6,4 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    pass
+    temp_id = models.TextField(blank=True)
+    verify_email = models.BooleanField(default=False)
+
+    search_fields = ["email"]
